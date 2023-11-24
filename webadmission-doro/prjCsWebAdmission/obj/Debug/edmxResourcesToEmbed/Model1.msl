@@ -1,0 +1,140 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="SGACModel1StoreContainer" CdmEntityContainer="SGACEntitiesFinal">
+    <EntitySetMapping Name="candidats">
+      <EntityTypeMapping TypeName="SGACModel1.candidat">
+        <MappingFragment StoreEntitySet="candidat">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="NomUtilisateur" ColumnName="NomUtilisateur" />
+          <ScalarProperty Name="PrenomUtilisateur" ColumnName="PrenomUtilisateur" />
+          <ScalarProperty Name="CodeUtilisateur" ColumnName="CodeUtilisateur" />
+          <ScalarProperty Name="AdresseUtilisateur" ColumnName="AdresseUtilisateur" />
+          <ScalarProperty Name="MotDePasse" ColumnName="MotDePasse" />
+          <ScalarProperty Name="CourrierPersonnel" ColumnName="CourrierPersonnel" />
+          <ScalarProperty Name="Telephone" ColumnName="Telephone" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="cours">
+      <EntityTypeMapping TypeName="SGACModel1.cour">
+        <MappingFragment StoreEntitySet="cours">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="NreHeure" ColumnName="NreHeure" />
+          <ScalarProperty Name="Titre" ColumnName="Titre" />
+          <ScalarProperty Name="Credits" ColumnName="Credits" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="demandeadmissions">
+      <EntityTypeMapping TypeName="SGACModel1.demandeadmission">
+        <MappingFragment StoreEntitySet="demandeadmission">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="IDCandidat" ColumnName="IDCandidat" />
+          <ScalarProperty Name="IDSession" ColumnName="IDSession" />
+          <ScalarProperty Name="IDNivEtud" ColumnName="IDNivEtud" />
+          <ScalarProperty Name="TypeDemande" ColumnName="TypeDemande" />
+          <ScalarProperty Name="Statut" ColumnName="Statut" />
+          <ScalarProperty Name="DateSousmission" ColumnName="DateSousmission" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="documents">
+      <EntityTypeMapping TypeName="SGACModel1.document">
+        <MappingFragment StoreEntitySet="documents">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="idAdmission" ColumnName="idAdmission" />
+          <ScalarProperty Name="idCandidat" ColumnName="idCandidat" />
+          <ScalarProperty Name="Photo" ColumnName="Photo" />
+          <ScalarProperty Name="ActeNaiss" ColumnName="ActeNaiss" />
+          <ScalarProperty Name="DernierDiplome" ColumnName="DernierDiplome" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="etudiants">
+      <EntityTypeMapping TypeName="SGACModel1.etudiant">
+        <MappingFragment StoreEntitySet="etudiant">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="CodePermanent" ColumnName="CodePermanent" />
+          <ScalarProperty Name="Nom" ColumnName="Nom" />
+          <ScalarProperty Name="Prenom" ColumnName="Prenom" />
+          <ScalarProperty Name="Courriel" ColumnName="Courriel" />
+          <ScalarProperty Name="Adresse" ColumnName="Adresse" />
+          <ScalarProperty Name="IDProgramme" ColumnName="IDProgramme" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="laisonCPs">
+      <EntityTypeMapping TypeName="SGACModel1.laisonCP">
+        <MappingFragment StoreEntitySet="laisonCP">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="IDProgramme" ColumnName="IDProgramme" />
+          <ScalarProperty Name="IDCours" ColumnName="IDCours" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="lettrerecommandations">
+      <EntityTypeMapping TypeName="SGACModel1.lettrerecommandation">
+        <MappingFragment StoreEntitySet="lettrerecommandation">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="IDCandidat" ColumnName="IDCandidat" />
+          <ScalarProperty Name="IDAdmission" ColumnName="IDAdmission" />
+          <ScalarProperty Name="NomProfesseur" ColumnName="NomProfesseur" />
+          <ScalarProperty Name="PrenomProfesseur" ColumnName="PrenomProfesseur" />
+          <ScalarProperty Name="Organisation" ColumnName="Organisation" />
+          <ScalarProperty Name="PosteOccupe" ColumnName="PosteOccupe" />
+          <ScalarProperty Name="TelephoneProfesseur" ColumnName="TelephoneProfesseur" />
+          <ScalarProperty Name="CourrielProfesseur" ColumnName="CourrielProfesseur" />
+          <ScalarProperty Name="Cv" ColumnName="Cv" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="NivEtudes">
+      <EntityTypeMapping TypeName="SGACModel1.NivEtude">
+        <MappingFragment StoreEntitySet="NivEtude">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="Niveau" ColumnName="Niveau" />
+          <ScalarProperty Name="Intitule" ColumnName="Intitule" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="programmes">
+      <EntityTypeMapping TypeName="SGACModel1.programme">
+        <MappingFragment StoreEntitySet="programme">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="CodeProgramme" ColumnName="CodeProgramme" />
+          <ScalarProperty Name="IdNiveauEtude" ColumnName="IdNiveauEtude" />
+          <ScalarProperty Name="Intitule" ColumnName="Intitule" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="regimes">
+      <EntityTypeMapping TypeName="SGACModel1.regime">
+        <MappingFragment StoreEntitySet="regime">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="IdAdmission" ColumnName="IdAdmission" />
+          <ScalarProperty Name="IdProgramme" ColumnName="IdProgramme" />
+          <ScalarProperty Name="regime1" ColumnName="regime" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sessions">
+      <EntityTypeMapping TypeName="SGACModel1.session">
+        <MappingFragment StoreEntitySet="session">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="CodeSession" ColumnName="CodeSession" />
+          <ScalarProperty Name="DateDebut" ColumnName="DateDebut" />
+          <ScalarProperty Name="DateFin" ColumnName="DateFin" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="programmecours" TypeName="SGACModel1.programmecours" StoreEntitySet="programmecours">
+      <EndProperty Name="cours">
+        <ScalarProperty Name="Id" ColumnName="IDCours" />
+      </EndProperty>
+      <EndProperty Name="programme">
+        <ScalarProperty Name="id" ColumnName="IDProgramme" />
+      </EndProperty>
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping>

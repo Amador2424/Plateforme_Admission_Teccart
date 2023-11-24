@@ -1,0 +1,139 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="GestionAdmissionModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="admission">
+    <Key>
+      <PropertyRef Name="id_admission" />
+    </Key>
+    <Property Name="id_admission" Type="Int32" Nullable="false" />
+    <Property Name="type" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="id_session" Type="Int32" Nullable="false" />
+    <Property Name="date_cre" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="choix1" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="regime1" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="choix2" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="regime2" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="choix3" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="regime3" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="id_candidat" Type="Int32" Nullable="false" />
+    <Property Name="date_soumettre" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="etat" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="motif_annulation" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="desc_annulation" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="date_annulation" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="chemin_lettre" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="description" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="lettres" Relationship="Self.FK__lettre__id_admis__286302EC" FromRole="admission" ToRole="lettre" />
+  </EntityType>
+  <EntityType Name="candidat">
+    <Key>
+      <PropertyRef Name="id_candidat" />
+    </Key>
+    <Property Name="id_candidat" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nom" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="prenom" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="mot2Passe" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="adresse" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="telephone" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="codeUtilisateur" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="utilisateurs" Relationship="Self.FK__utilisate__id_ca__300424B4" FromRole="candidat" ToRole="utilisateur" />
+  </EntityType>
+  <EntityType Name="lettre">
+    <Key>
+      <PropertyRef Name="id_lettre" />
+    </Key>
+    <Property Name="id_lettre" Type="Int32" Nullable="false" />
+    <Property Name="id_admission" Type="Int32" Nullable="false" />
+    <Property Name="date" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="nomProf" Type="String" MaxLength="80" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="prenomProf" Type="String" MaxLength="80" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="institution" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="poste" Type="String" MaxLength="80" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="telephone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="email" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="statut" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="chemin" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="description" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="admission" Relationship="Self.FK__lettre__id_admis__286302EC" FromRole="lettre" ToRole="admission" />
+  </EntityType>
+  <EntityType Name="programme">
+    <Key>
+      <PropertyRef Name="id_programme" />
+    </Key>
+    <Property Name="id_programme" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="code" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="description" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="statut" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+  </EntityType>
+  <EntityType Name="session">
+    <Key>
+      <PropertyRef Name="id_session" />
+    </Key>
+    <Property Name="id_session" Type="Int32" Nullable="false" />
+    <Property Name="nom_session" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="debut" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="fin" Type="DateTime" Nullable="false" Precision="0" />
+  </EntityType>
+  <EntityType Name="utilisateur">
+    <Key>
+      <PropertyRef Name="id_utilisateur" />
+    </Key>
+    <Property Name="id_utilisateur" Type="Int32" Nullable="false" />
+    <Property Name="codePermanent" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="id_candidat" Type="Int32" Nullable="false" />
+    <Property Name="nip" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="type" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="candidat" Relationship="Self.FK__utilisate__id_ca__300424B4" FromRole="utilisateur" ToRole="candidat" />
+  </EntityType>
+  <EntityType Name="lval">
+    <Key>
+      <PropertyRef Name="typlval" />
+      <PropertyRef Name="codlval" />
+      <PropertyRef Name="desclval" />
+    </Key>
+    <Property Name="typlval" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="codlval" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="desclval" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+  </EntityType>
+  <Association Name="FK__lettre__id_admis__286302EC">
+    <End Role="admission" Type="Self.admission" Multiplicity="1" />
+    <End Role="lettre" Type="Self.lettre" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="admission">
+        <PropertyRef Name="id_admission" />
+      </Principal>
+      <Dependent Role="lettre">
+        <PropertyRef Name="id_admission" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__utilisate__id_ca__300424B4">
+    <End Role="candidat" Type="Self.candidat" Multiplicity="1" />
+    <End Role="utilisateur" Type="Self.utilisateur" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="candidat">
+        <PropertyRef Name="id_candidat" />
+      </Principal>
+      <Dependent Role="utilisateur">
+        <PropertyRef Name="id_candidat" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="GestionAdmissionEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="admissions" EntityType="Self.admission" />
+    <EntitySet Name="candidats" EntityType="Self.candidat" />
+    <EntitySet Name="lettres" EntityType="Self.lettre" />
+    <EntitySet Name="programmes" EntityType="Self.programme" />
+    <EntitySet Name="sessions" EntityType="Self.session" />
+    <EntitySet Name="utilisateurs" EntityType="Self.utilisateur" />
+    <EntitySet Name="lvals" EntityType="Self.lval" />
+    <AssociationSet Name="FK__lettre__id_admis__286302EC" Association="Self.FK__lettre__id_admis__286302EC">
+      <End Role="admission" EntitySet="admissions" />
+      <End Role="lettre" EntitySet="lettres" />
+    </AssociationSet>
+    <AssociationSet Name="FK__utilisate__id_ca__300424B4" Association="Self.FK__utilisate__id_ca__300424B4">
+      <End Role="candidat" EntitySet="candidats" />
+      <End Role="utilisateur" EntitySet="utilisateurs" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

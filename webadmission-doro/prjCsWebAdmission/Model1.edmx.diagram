@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="06e9d0a6782b4c778cee2946c33c9aad" Name="Diagram1">
+        <EntityTypeShape EntityType="SGACModel1.candidat" Width="1.5" PointX="0.75" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="SGACModel1.cour" Width="1.5" PointX="0.75" PointY="12.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="SGACModel1.demandeadmission" Width="1.5" PointX="3" PointY="4.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="SGACModel1.document" Width="1.5" PointX="5.25" PointY="4.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SGACModel1.etudiant" Width="1.5" PointX="5.25" PointY="11.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SGACModel1.laisonCP" Width="1.5" PointX="5.25" PointY="9.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="SGACModel1.lettrerecommandation" Width="1.5" PointX="8.25" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="SGACModel1.NivEtude" Width="1.5" PointX="0.75" PointY="1.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SGACModel1.programme" Width="1.5" PointX="3" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SGACModel1.regime" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="SGACModel1.session" Width="1.5" PointX="0.75" PointY="8.5" IsExpanded="true" />
+        <AssociationConnector Association="SGACModel1.FK__demandead__IDCan__6477ECF3" ManuallyRouted="false" />
+        <AssociationConnector Association="SGACModel1.FK__documents__idCan__02FC7413" ManuallyRouted="false" />
+        <AssociationConnector Association="SGACModel1.FK__lettrerec__IDCan__73BA3083" ManuallyRouted="false" />
+        <AssociationConnector Association="SGACModel1.FK__laisonCP__IDCour__5812160E" ManuallyRouted="false" />
+        <AssociationConnector Association="SGACModel1.FK__demandead__IDNiv__66603565" ManuallyRouted="false" />
+        <AssociationConnector Association="SGACModel1.FK__demandead__IDSes__6383C8BA" ManuallyRouted="false" />
+        <AssociationConnector Association="SGACModel1.FK__documents__idAdm__03F0984C" ManuallyRouted="false" />
+        <AssociationConnector Association="SGACModel1.FK__lettrerec__IDAdm__74AE54BC" ManuallyRouted="false" />
+        <AssociationConnector Association="SGACModel1.FK__regime__IdAdmiss__6FE99F9F" ManuallyRouted="false" />
+        <AssociationConnector Association="SGACModel1.FK__etudiant__IDProg__5DCAEF64" ManuallyRouted="false" />
+        <AssociationConnector Association="SGACModel1.FK__laisonCP__IDProg__5FB337D6" ManuallyRouted="false" />
+        <AssociationConnector Association="SGACModel1.FK__programme__IdNiv__60A75C0F" ManuallyRouted="false" />
+        <AssociationConnector Association="SGACModel1.FK__regime__IdProgra__70DDC3D8" ManuallyRouted="false" />
+        <AssociationConnector Association="SGACModel1.programmecours" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

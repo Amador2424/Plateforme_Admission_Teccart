@@ -1,0 +1,376 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="SGACModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="candidat">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NomUtilisateur" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="PrenomUtilisateur" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="CodeUtilisateur" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="AdresseUtilisateur" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="MotDePasse" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="CourrierPersonnel" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="demandeadmissions" Relationship="Self.FK__demandead__IDCan__6477ECF3" FromRole="candidat" ToRole="demandeadmission" />
+    <NavigationProperty Name="lettrerecommandations" Relationship="Self.FK__lettrerec__IDCan__5070F446" FromRole="candidat" ToRole="lettrerecommandation" />
+    <NavigationProperty Name="documents" Relationship="SGACModel.FK__documents__idCan__02FC7413" FromRole="candidat" ToRole="document" />
+    <Property Name="Telephone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="cour">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NreHeure" Type="Int32" />
+    <Property Name="Titre" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="Credits" Type="Int32" />
+    <NavigationProperty Name="laisonCPs" Relationship="Self.FK__laisonCP__IDCour__5812160E" FromRole="cours" ToRole="laisonCP" />
+    <NavigationProperty Name="programmes" Relationship="Self.programmecours" FromRole="cours" ToRole="programme" />
+  </EntityType>
+  <EntityType Name="demandeadmission">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="IDCandidat" Type="Int32" />
+    <Property Name="IDSession" Type="Int32" />
+    <Property Name="IDNivEtud" Type="Int32" />
+    <Property Name="TypeDemande" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Statut" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="candidat" Relationship="Self.FK__demandead__IDCan__6477ECF3" FromRole="demandeadmission" ToRole="candidat" />
+    <NavigationProperty Name="NivEtude" Relationship="Self.FK__demandead__IDNiv__66603565" FromRole="demandeadmission" ToRole="NivEtude" />
+    <NavigationProperty Name="session" Relationship="Self.FK__demandead__IDSes__6383C8BA" FromRole="demandeadmission" ToRole="session" />
+    <NavigationProperty Name="regimes" Relationship="Self.FK__regime__IdAdmiss__6FE99F9F" FromRole="demandeadmission" ToRole="regime" />
+    <NavigationProperty Name="lettrerecommandations" Relationship="SGACModel.FK__lettrerec__IDAdm__74AE54BC" FromRole="demandeadmission" ToRole="lettrerecommandation" />
+    <Property Name="DateSousmission" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="documents" Relationship="SGACModel.FK__documents__idAdm__03F0984C" FromRole="demandeadmission" ToRole="document" />
+  </EntityType>
+  <EntityType Name="etudiant">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CodePermanent" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="Nom" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="Prenom" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="Courriel" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="Adresse" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="IDProgramme" Type="Int32" />
+    <NavigationProperty Name="programme" Relationship="Self.FK__etudiant__IDProg__5DCAEF64" FromRole="etudiant" ToRole="programme" />
+  </EntityType>
+  <EntityType Name="laisonCP">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IDProgramme" Type="Int32" Nullable="false" />
+    <Property Name="IDCours" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="cour" Relationship="Self.FK__laisonCP__IDCour__5812160E" FromRole="laisonCP" ToRole="cours" />
+    <NavigationProperty Name="programme" Relationship="Self.FK__laisonCP__IDProg__5FB337D6" FromRole="laisonCP" ToRole="programme" />
+  </EntityType>
+  <EntityType Name="lettrerecommandation">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IDCandidat" Type="Int32" />
+    <Property Name="NomProfesseur" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="PrenomProfesseur" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="Organisation" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="PosteOccupe" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="TelephoneProfesseur" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="CourrielProfesseur" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="candidat" Relationship="Self.FK__lettrerec__IDCan__5070F446" FromRole="lettrerecommandation" ToRole="candidat" />
+    <Property Name="IDAdmission" Type="Int32" />
+    <NavigationProperty Name="demandeadmission" Relationship="SGACModel.FK__lettrerec__IDAdm__74AE54BC" FromRole="lettrerecommandation" ToRole="demandeadmission" />
+    <Property Name="Cv" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="NivEtude">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Niveau" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="Intitule" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="demandeadmissions" Relationship="Self.FK__demandead__IDNiv__66603565" FromRole="NivEtude" ToRole="demandeadmission" />
+    <NavigationProperty Name="programmes" Relationship="Self.FK__programme__IdNiv__60A75C0F" FromRole="NivEtude" ToRole="programme" />
+  </EntityType>
+  <EntityType Name="programme">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CodeProgramme" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="IdNiveauEtude" Type="Int32" />
+    <Property Name="Intitule" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="etudiants" Relationship="Self.FK__etudiant__IDProg__5DCAEF64" FromRole="programme" ToRole="etudiant" />
+    <NavigationProperty Name="laisonCPs" Relationship="Self.FK__laisonCP__IDProg__5FB337D6" FromRole="programme" ToRole="laisonCP" />
+    <NavigationProperty Name="NivEtude" Relationship="Self.FK__programme__IdNiv__60A75C0F" FromRole="programme" ToRole="NivEtude" />
+    <NavigationProperty Name="regimes" Relationship="Self.FK__regime__IdProgra__70DDC3D8" FromRole="programme" ToRole="regime" />
+    <NavigationProperty Name="cours" Relationship="Self.programmecours" FromRole="programme" ToRole="cours" />
+  </EntityType>
+  <EntityType Name="regime">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IdAdmission" Type="Int32" Nullable="false" />
+    <Property Name="IdProgramme" Type="Int32" Nullable="false" />
+    <Property Name="regime1" Type="Int32" />
+    <NavigationProperty Name="demandeadmission" Relationship="Self.FK__regime__IdAdmiss__6FE99F9F" FromRole="regime" ToRole="demandeadmission" />
+    <NavigationProperty Name="programme" Relationship="Self.FK__regime__IdProgra__70DDC3D8" FromRole="regime" ToRole="programme" />
+    <Property Name="Type" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="session">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CodeSession" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="DateDebut" Type="DateTime" Precision="0" />
+    <Property Name="DateFin" Type="DateTime" Precision="0" />
+    <NavigationProperty Name="demandeadmissions" Relationship="Self.FK__demandead__IDSes__6383C8BA" FromRole="session" ToRole="demandeadmission" />
+  </EntityType>
+  <Association Name="FK__demandead__IDCan__6477ECF3">
+    <End Role="candidat" Type="Self.candidat" Multiplicity="0..1" />
+    <End Role="demandeadmission" Type="Self.demandeadmission" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="candidat">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="demandeadmission">
+        <PropertyRef Name="IDCandidat" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__lettrerec__IDCan__5070F446">
+    <End Role="candidat" Type="Self.candidat" Multiplicity="0..1" />
+    <End Role="lettrerecommandation" Type="Self.lettrerecommandation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="candidat">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="lettrerecommandation">
+        <PropertyRef Name="IDCandidat" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__laisonCP__IDCour__5812160E">
+    <End Role="cours" Type="Self.cour" Multiplicity="1" />
+    <End Role="laisonCP" Type="Self.laisonCP" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="cours">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="laisonCP">
+        <PropertyRef Name="IDCours" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__demandead__IDNiv__66603565">
+    <End Role="NivEtude" Type="Self.NivEtude" Multiplicity="0..1" />
+    <End Role="demandeadmission" Type="Self.demandeadmission" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NivEtude">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="demandeadmission">
+        <PropertyRef Name="IDNivEtud" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__demandead__IDSes__6383C8BA">
+    <End Role="session" Type="Self.session" Multiplicity="0..1" />
+    <End Role="demandeadmission" Type="Self.demandeadmission" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="session">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="demandeadmission">
+        <PropertyRef Name="IDSession" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__regime__IdAdmiss__6FE99F9F">
+    <End Role="demandeadmission" Type="Self.demandeadmission" Multiplicity="1" />
+    <End Role="regime" Type="Self.regime" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="demandeadmission">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="regime">
+        <PropertyRef Name="IdAdmission" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__etudiant__IDProg__5DCAEF64">
+    <End Role="programme" Type="Self.programme" Multiplicity="0..1" />
+    <End Role="etudiant" Type="Self.etudiant" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="programme">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="etudiant">
+        <PropertyRef Name="IDProgramme" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__laisonCP__IDProg__5FB337D6">
+    <End Role="programme" Type="Self.programme" Multiplicity="1" />
+    <End Role="laisonCP" Type="Self.laisonCP" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="programme">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="laisonCP">
+        <PropertyRef Name="IDProgramme" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__programme__IdNiv__60A75C0F">
+    <End Role="NivEtude" Type="Self.NivEtude" Multiplicity="0..1" />
+    <End Role="programme" Type="Self.programme" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NivEtude">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="programme">
+        <PropertyRef Name="IdNiveauEtude" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__regime__IdProgra__70DDC3D8">
+    <End Role="programme" Type="Self.programme" Multiplicity="1" />
+    <End Role="regime" Type="Self.regime" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="programme">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="regime">
+        <PropertyRef Name="IdProgramme" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="programmecours">
+    <End Role="cours" Type="Self.cour" Multiplicity="*" />
+    <End Role="programme" Type="Self.programme" Multiplicity="*" />
+  </Association>
+  <EntityContainer Name="SGACEntities5" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="candidats" EntityType="Self.candidat" />
+    <EntitySet Name="cours" EntityType="Self.cour" />
+    <EntitySet Name="demandeadmissions" EntityType="Self.demandeadmission" />
+    <EntitySet Name="etudiants" EntityType="Self.etudiant" />
+    <EntitySet Name="laisonCPs" EntityType="Self.laisonCP" />
+    <EntitySet Name="lettrerecommandations" EntityType="Self.lettrerecommandation" />
+    <EntitySet Name="NivEtudes" EntityType="Self.NivEtude" />
+    <EntitySet Name="programmes" EntityType="Self.programme" />
+    <EntitySet Name="regimes" EntityType="Self.regime" />
+    <EntitySet Name="sessions" EntityType="Self.session" />
+    <AssociationSet Name="FK__demandead__IDCan__6477ECF3" Association="Self.FK__demandead__IDCan__6477ECF3">
+      <End Role="candidat" EntitySet="candidats" />
+      <End Role="demandeadmission" EntitySet="demandeadmissions" />
+    </AssociationSet>
+    <AssociationSet Name="FK__lettrerec__IDCan__5070F446" Association="Self.FK__lettrerec__IDCan__5070F446">
+      <End Role="candidat" EntitySet="candidats" />
+      <End Role="lettrerecommandation" EntitySet="lettrerecommandations" />
+    </AssociationSet>
+    <AssociationSet Name="FK__laisonCP__IDCour__5812160E" Association="Self.FK__laisonCP__IDCour__5812160E">
+      <End Role="cours" EntitySet="cours" />
+      <End Role="laisonCP" EntitySet="laisonCPs" />
+    </AssociationSet>
+    <AssociationSet Name="FK__demandead__IDNiv__66603565" Association="Self.FK__demandead__IDNiv__66603565">
+      <End Role="NivEtude" EntitySet="NivEtudes" />
+      <End Role="demandeadmission" EntitySet="demandeadmissions" />
+    </AssociationSet>
+    <AssociationSet Name="FK__demandead__IDSes__6383C8BA" Association="Self.FK__demandead__IDSes__6383C8BA">
+      <End Role="session" EntitySet="sessions" />
+      <End Role="demandeadmission" EntitySet="demandeadmissions" />
+    </AssociationSet>
+    <AssociationSet Name="FK__regime__IdAdmiss__6FE99F9F" Association="Self.FK__regime__IdAdmiss__6FE99F9F">
+      <End Role="demandeadmission" EntitySet="demandeadmissions" />
+      <End Role="regime" EntitySet="regimes" />
+    </AssociationSet>
+    <AssociationSet Name="FK__etudiant__IDProg__5DCAEF64" Association="Self.FK__etudiant__IDProg__5DCAEF64">
+      <End Role="programme" EntitySet="programmes" />
+      <End Role="etudiant" EntitySet="etudiants" />
+    </AssociationSet>
+    <AssociationSet Name="FK__laisonCP__IDProg__5FB337D6" Association="Self.FK__laisonCP__IDProg__5FB337D6">
+      <End Role="programme" EntitySet="programmes" />
+      <End Role="laisonCP" EntitySet="laisonCPs" />
+    </AssociationSet>
+    <AssociationSet Name="FK__programme__IdNiv__60A75C0F" Association="Self.FK__programme__IdNiv__60A75C0F">
+      <End Role="NivEtude" EntitySet="NivEtudes" />
+      <End Role="programme" EntitySet="programmes" />
+    </AssociationSet>
+    <AssociationSet Name="FK__regime__IdProgra__70DDC3D8" Association="Self.FK__regime__IdProgra__70DDC3D8">
+      <End Role="programme" EntitySet="programmes" />
+      <End Role="regime" EntitySet="regimes" />
+    </AssociationSet>
+    <AssociationSet Name="programmecours" Association="Self.programmecours">
+      <End Role="cours" EntitySet="cours" />
+      <End Role="programme" EntitySet="programmes" />
+    </AssociationSet>
+    <AssociationSet Name="FK__lettrerec__IDAdm__74AE54BC" Association="SGACModel.FK__lettrerec__IDAdm__74AE54BC">
+      <End Role="demandeadmission" EntitySet="demandeadmissions" />
+      <End Role="lettrerecommandation" EntitySet="lettrerecommandations" />
+    </AssociationSet>
+    <EntitySet Name="documents" EntityType="SGACModel.document" />
+    <AssociationSet Name="FK__documents__idCan__02FC7413" Association="SGACModel.FK__documents__idCan__02FC7413">
+      <End Role="candidat" EntitySet="candidats" />
+      <End Role="document" EntitySet="documents" />
+    </AssociationSet>
+    <AssociationSet Name="FK__documents__idAdm__03F0984C" Association="SGACModel.FK__documents__idAdm__03F0984C">
+      <End Role="demandeadmission" EntitySet="demandeadmissions" />
+      <End Role="document" EntitySet="documents" />
+    </AssociationSet>
+  </EntityContainer>
+  <Association Name="FK__lettrerec__IDAdm__74AE54BC">
+    <End Type="SGACModel.demandeadmission" Role="demandeadmission" Multiplicity="0..1" />
+    <End Type="SGACModel.lettrerecommandation" Role="lettrerecommandation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="demandeadmission">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="lettrerecommandation">
+        <PropertyRef Name="IDAdmission" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="document">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="idAdmission" Type="Int32" />
+    <Property Name="idCandidat" Type="Int32" />
+    <Property Name="Photo" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="ActeNaiss" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="DernierDiplome" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <NavigationProperty Name="candidat" Relationship="SGACModel.FK__documents__idCan__02FC7413" FromRole="document" ToRole="candidat" />
+    <NavigationProperty Name="demandeadmission" Relationship="SGACModel.FK__documents__idAdm__03F0984C" FromRole="document" ToRole="demandeadmission" />
+  </EntityType>
+  <Association Name="FK__documents__idCan__02FC7413">
+    <End Type="SGACModel.candidat" Role="candidat" Multiplicity="0..1" />
+    <End Type="SGACModel.document" Role="document" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="candidat">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="document">
+        <PropertyRef Name="idCandidat" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__documents__idAdm__03F0984C">
+    <End Type="SGACModel.demandeadmission" Role="demandeadmission" Multiplicity="0..1" />
+    <End Type="SGACModel.document" Role="document" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="demandeadmission">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="document">
+        <PropertyRef Name="idAdmission" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

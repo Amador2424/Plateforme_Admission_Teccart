@@ -1,0 +1,143 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="GestionAdmissionModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="admission">
+    <Key>
+      <PropertyRef Name="id_admission" />
+    </Key>
+    <Property Name="id_admission" Type="int" Nullable="false" />
+    <Property Name="type" Type="nvarchar" MaxLength="15" Nullable="false" />
+    <Property Name="id_session" Type="int" Nullable="false" />
+    <Property Name="date_cre" Type="date" Nullable="false" />
+    <Property Name="choix1" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="regime1" Type="nvarchar" MaxLength="15" Nullable="false" />
+    <Property Name="choix2" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="regime2" Type="nvarchar" MaxLength="15" Nullable="false" />
+    <Property Name="choix3" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="regime3" Type="nvarchar" MaxLength="15" Nullable="false" />
+    <Property Name="id_candidat" Type="int" Nullable="false" />
+    <Property Name="date_soumettre" Type="date" Nullable="false" />
+    <Property Name="etat" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="motif_annulation" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="desc_annulation" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="date_annulation" Type="date" Nullable="false" />
+    <Property Name="chemin_lettre" Type="nvarchar" MaxLength="150" Nullable="false" />
+    <Property Name="description" Type="nvarchar" MaxLength="200" Nullable="false" />
+  </EntityType>
+  <EntityType Name="candidat">
+    <Key>
+      <PropertyRef Name="id_candidat" />
+    </Key>
+    <Property Name="id_candidat" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nom" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="prenom" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="mot2Passe" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="email" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="adresse" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="telephone" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="codeUtilisateur" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="lettre">
+    <Key>
+      <PropertyRef Name="id_lettre" />
+    </Key>
+    <Property Name="id_lettre" Type="int" Nullable="false" />
+    <Property Name="id_admission" Type="int" Nullable="false" />
+    <Property Name="date" Type="date" Nullable="false" />
+    <Property Name="nomProf" Type="nvarchar" MaxLength="80" Nullable="false" />
+    <Property Name="prenomProf" Type="nvarchar" MaxLength="80" Nullable="false" />
+    <Property Name="institution" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="poste" Type="nvarchar" MaxLength="80" Nullable="false" />
+    <Property Name="telephone" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="email" Type="nvarchar" MaxLength="40" Nullable="false" />
+    <Property Name="statut" Type="nvarchar" MaxLength="15" Nullable="false" />
+    <Property Name="chemin" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="description" Type="nvarchar" MaxLength="200" Nullable="false" />
+  </EntityType>
+  <!--Erreurs détectées durant la génération :
+avertissement 6002: La table/vue 'GestionAdmission.dbo.lval' n'a pas de clé primaire définie. La clé a été déduite et la définition a été créée en tant que table/vue en lecture seule.-->
+  <EntityType Name="lval">
+    <Key>
+      <PropertyRef Name="typlval" />
+      <PropertyRef Name="codlval" />
+      <PropertyRef Name="desclval" />
+    </Key>
+    <Property Name="typlval" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="codlval" Type="nvarchar" MaxLength="15" Nullable="false" />
+    <Property Name="desclval" Type="nvarchar" MaxLength="100" Nullable="false" />
+  </EntityType>
+  <EntityType Name="programme">
+    <Key>
+      <PropertyRef Name="id_programme" />
+    </Key>
+    <Property Name="id_programme" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="code" Type="nvarchar" MaxLength="15" Nullable="false" />
+    <Property Name="description" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="statut" Type="nvarchar" MaxLength="10" Nullable="false" />
+  </EntityType>
+  <EntityType Name="session">
+    <Key>
+      <PropertyRef Name="id_session" />
+    </Key>
+    <Property Name="id_session" Type="int" Nullable="false" />
+    <Property Name="nom_session" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="debut" Type="date" Nullable="false" />
+    <Property Name="fin" Type="date" Nullable="false" />
+  </EntityType>
+  <EntityType Name="utilisateur">
+    <Key>
+      <PropertyRef Name="id_utilisateur" />
+    </Key>
+    <Property Name="id_utilisateur" Type="int" Nullable="false" />
+    <Property Name="codePermanent" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="id_candidat" Type="int" Nullable="false" />
+    <Property Name="nip" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="type" Type="nvarchar" MaxLength="15" Nullable="false" />
+  </EntityType>
+  <Association Name="FK__lettre__id_admis__286302EC">
+    <End Role="admission" Type="Self.admission" Multiplicity="1" />
+    <End Role="lettre" Type="Self.lettre" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="admission">
+        <PropertyRef Name="id_admission" />
+      </Principal>
+      <Dependent Role="lettre">
+        <PropertyRef Name="id_admission" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__utilisate__id_ca__300424B4">
+    <End Role="candidat" Type="Self.candidat" Multiplicity="1" />
+    <End Role="utilisateur" Type="Self.utilisateur" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="candidat">
+        <PropertyRef Name="id_candidat" />
+      </Principal>
+      <Dependent Role="utilisateur">
+        <PropertyRef Name="id_candidat" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="GestionAdmissionModelStoreContainer">
+    <EntitySet Name="admission" EntityType="Self.admission" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="candidat" EntityType="Self.candidat" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="lettre" EntityType="Self.lettre" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="programme" EntityType="Self.programme" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="session" EntityType="Self.session" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="utilisateur" EntityType="Self.utilisateur" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="lval" EntityType="Self.lval" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [lval].[typlval] AS [typlval], 
+    [lval].[codlval] AS [codlval], 
+    [lval].[desclval] AS [desclval]
+    FROM [dbo].[lval] AS [lval]</DefiningQuery>
+    </EntitySet>
+    <AssociationSet Name="FK__lettre__id_admis__286302EC" Association="Self.FK__lettre__id_admis__286302EC">
+      <End Role="admission" EntitySet="admission" />
+      <End Role="lettre" EntitySet="lettre" />
+    </AssociationSet>
+    <AssociationSet Name="FK__utilisate__id_ca__300424B4" Association="Self.FK__utilisate__id_ca__300424B4">
+      <End Role="candidat" EntitySet="candidat" />
+      <End Role="utilisateur" EntitySet="utilisateur" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

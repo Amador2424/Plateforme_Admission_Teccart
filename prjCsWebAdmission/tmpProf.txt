@@ -1,0 +1,61 @@
+﻿using System;
+using System.Collections.Generic;
+
+public partial class FormulaireRecommandation : System.Web.UI.Page
+{
+    protected void Page_Load(object sender, EventArgs e)
+    {
+        if (!IsPostBack)
+        {
+            // La première fois que la page est chargée, initialisez la session
+            Session["Professeurs"] = new List<Professeur>();
+        }
+    }
+
+    protected void btnSoumettre_Click(object sender, EventArgs e)
+    {
+        // Récupérez la liste actuelle des professeurs dans la session
+        List<Professeur> professeurs = (List<Professeur>)Session["Professeurs"];
+
+        // Ajoutez les données du formulaire actuel à la liste
+        professeurs.Add(new Professeur
+        {
+            Nom = txtNomProf.Text,
+            Prenom = txtPrenomProf.Text,
+            Poste = txtPosteProf.Text,
+            Institution = txtInsitut.Text,
+            Telephone = txtTelPhone.Text,
+            Courriel = txtCourriel.Text
+            // Ajoutez d'autres propriétés du professeur ici
+        });
+
+        // Réinitialisez le formulaire
+        EffacerFormulaire();
+
+        // Mettez à jour la liste des professeurs dans la session
+        Session["Professeurs"] = professeurs;
+    }
+
+    private void EffacerFormulaire()
+    {
+        // Effacez les champs du formulaire
+        txtNomProf.Text = string.Empty;
+        txtPrenomProf.Text = string.Empty;
+        txtPosteProf.Text = string.Empty;
+        txtInsitut.Text = string.Empty;
+        txtTelPhone.Text = string.Empty;
+        txtCourriel.Text = string.Empty;
+        // Effacez d'autres champs du formulaire
+    }
+}
+
+public class Professeur
+{
+    public string Nom { get; set; }
+    public string Prenom { get; set; }
+    public string Poste { get; set; }
+    public string Institution { get; set; }
+    public string Telephone { get; set; }
+    public string Courriel { get; set; }
+    // Ajoutez d'autres propriétés du professeur ici
+}

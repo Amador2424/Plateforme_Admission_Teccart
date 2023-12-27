@@ -1,0 +1,101 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="GestionAdmissionModelStoreContainer" CdmEntityContainer="GestionAdmissionEntities">
+    <EntitySetMapping Name="admissions">
+      <EntityTypeMapping TypeName="GestionAdmissionModel.admission">
+        <MappingFragment StoreEntitySet="admission">
+          <ScalarProperty Name="id_admission" ColumnName="id_admission" />
+          <ScalarProperty Name="type" ColumnName="type" />
+          <ScalarProperty Name="id_session" ColumnName="id_session" />
+          <ScalarProperty Name="date_cre" ColumnName="date_cre" />
+          <ScalarProperty Name="choix1" ColumnName="choix1" />
+          <ScalarProperty Name="regime1" ColumnName="regime1" />
+          <ScalarProperty Name="choix2" ColumnName="choix2" />
+          <ScalarProperty Name="regime2" ColumnName="regime2" />
+          <ScalarProperty Name="choix3" ColumnName="choix3" />
+          <ScalarProperty Name="regime3" ColumnName="regime3" />
+          <ScalarProperty Name="id_candidat" ColumnName="id_candidat" />
+          <ScalarProperty Name="date_soumettre" ColumnName="date_soumettre" />
+          <ScalarProperty Name="etat" ColumnName="etat" />
+          <ScalarProperty Name="motif_annulation" ColumnName="motif_annulation" />
+          <ScalarProperty Name="desc_annulation" ColumnName="desc_annulation" />
+          <ScalarProperty Name="date_annulation" ColumnName="date_annulation" />
+          <ScalarProperty Name="chemin_lettre" ColumnName="chemin_lettre" />
+          <ScalarProperty Name="description" ColumnName="description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="candidats">
+      <EntityTypeMapping TypeName="GestionAdmissionModel.candidat">
+        <MappingFragment StoreEntitySet="candidat">
+          <ScalarProperty Name="id_candidat" ColumnName="id_candidat" />
+          <ScalarProperty Name="nom" ColumnName="nom" />
+          <ScalarProperty Name="prenom" ColumnName="prenom" />
+          <ScalarProperty Name="mot2Passe" ColumnName="mot2Passe" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="adresse" ColumnName="adresse" />
+          <ScalarProperty Name="telephone" ColumnName="telephone" />
+          <ScalarProperty Name="codeUtilisateur" ColumnName="codeUtilisateur" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="lettres">
+      <EntityTypeMapping TypeName="GestionAdmissionModel.lettre">
+        <MappingFragment StoreEntitySet="lettre">
+          <ScalarProperty Name="id_lettre" ColumnName="id_lettre" />
+          <ScalarProperty Name="id_admission" ColumnName="id_admission" />
+          <ScalarProperty Name="date" ColumnName="date" />
+          <ScalarProperty Name="nomProf" ColumnName="nomProf" />
+          <ScalarProperty Name="prenomProf" ColumnName="prenomProf" />
+          <ScalarProperty Name="institution" ColumnName="institution" />
+          <ScalarProperty Name="poste" ColumnName="poste" />
+          <ScalarProperty Name="telephone" ColumnName="telephone" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="statut" ColumnName="statut" />
+          <ScalarProperty Name="chemin" ColumnName="chemin" />
+          <ScalarProperty Name="description" ColumnName="description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="programmes">
+      <EntityTypeMapping TypeName="GestionAdmissionModel.programme">
+        <MappingFragment StoreEntitySet="programme">
+          <ScalarProperty Name="id_programme" ColumnName="id_programme" />
+          <ScalarProperty Name="code" ColumnName="code" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="statut" ColumnName="statut" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sessions">
+      <EntityTypeMapping TypeName="GestionAdmissionModel.session">
+        <MappingFragment StoreEntitySet="session">
+          <ScalarProperty Name="id_session" ColumnName="id_session" />
+          <ScalarProperty Name="nom_session" ColumnName="nom_session" />
+          <ScalarProperty Name="debut" ColumnName="debut" />
+          <ScalarProperty Name="fin" ColumnName="fin" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="utilisateurs">
+      <EntityTypeMapping TypeName="GestionAdmissionModel.utilisateur">
+        <MappingFragment StoreEntitySet="utilisateur">
+          <ScalarProperty Name="id_utilisateur" ColumnName="id_utilisateur" />
+          <ScalarProperty Name="codePermanent" ColumnName="codePermanent" />
+          <ScalarProperty Name="id_candidat" ColumnName="id_candidat" />
+          <ScalarProperty Name="nip" ColumnName="nip" />
+          <ScalarProperty Name="type" ColumnName="type" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="lvals">
+      <EntityTypeMapping TypeName="GestionAdmissionModel.lval">
+        <MappingFragment StoreEntitySet="lval">
+          <ScalarProperty Name="typlval" ColumnName="typlval" />
+          <ScalarProperty Name="codlval" ColumnName="codlval" />
+          <ScalarProperty Name="desclval" ColumnName="desclval" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
